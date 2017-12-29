@@ -22,10 +22,8 @@ def validate_note(note):
 def ask_for_note():
     while True:
         note = input("root note: ").upper()
-        is_valid = validate_note(note)
-        if (is_valid):
+        if (validate_note(note)):
             return note
-            break
         else:
             print("I don't understand that note.")
 
