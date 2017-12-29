@@ -19,12 +19,21 @@ NOTES = [
 def validate_note(note):
     return note.upper() in NOTES
 
-
 def interpret_note_variant(note):
-    """Convert note sharp/flat shorthand to proper symbol."""
+    """Convert shorthand and weird names to our NOTES."""
     note = note.replace('+', '♯')
     note = note.replace('-', '♭')
-    return note.upper()
+    note = note.upper()
+    weird_variations = {
+            'A♭': 'G♯',
+            'A♯': 'B♭',
+            'D♭': 'C♯',
+            'D♯': 'E♭',
+            'G♭': 'F♯',
+            }
+    if (note in weird_variations):
+        return weird_variations[note]
+    return note
 
 def ask_for_note():
     while True:
