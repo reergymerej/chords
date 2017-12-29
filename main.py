@@ -19,9 +19,16 @@ NOTES = [
 def validate_note(note):
     return note.upper() in NOTES
 
+
+def interpret_note_variant(note):
+    """Convert note sharp/flat shorthand to proper symbol."""
+    note = note.replace('+', '♯')
+    note = note.replace('-', '♭')
+    return note.upper()
+
 def ask_for_note():
     while True:
-        note = input("root note: ").upper()
+        note = interpret_note_variant(input("root note: "))
         if (validate_note(note)):
             return note
         else:
