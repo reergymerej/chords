@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-print("Give me a root note and I'll give you the major chord.")
+print("Give me a root note.")
 
 NOTES = [
         'A',
@@ -43,7 +43,6 @@ def ask_for_note():
         else:
             print("I don't understand that note.")
 
-
 def shift_list(the_list, item):
     """Reorganize list so item is at 0 index."""
     index = the_list.index(item)
@@ -59,6 +58,15 @@ def get_major_chord(root_note):
     chord = '{:s}-{:s}-{:s}'.format(root_note, third, fifth)
     return chord
 
+def get_minor_chord(root_note):
+    shifted_notes = shift_list(NOTES, root_note)
+    third = shifted_notes[3]
+    fifth = shifted_notes[7]
+    chord = '{:s}-{:s}-{:s}'.format(root_note, third, fifth)
+    return chord
+
 note = ask_for_note()
 chord = get_major_chord(note)
 print('The major chord for the root {:s} is {:s}.'.format(note, chord))
+chord = get_minor_chord(note)
+print('The minor chord for the root {:s} is {:s}.'.format(note, chord))
