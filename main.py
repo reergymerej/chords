@@ -66,7 +66,14 @@ def get_minor_chord(root_note):
     return chord
 
 note = ask_for_note()
-chord = get_major_chord(note)
-print('The major chord for the root {:s} is {:s}.'.format(note, chord))
-chord = get_minor_chord(note)
-print('The minor chord for the root {:s} is {:s}.'.format(note, chord))
+# iterate through each type of chord we know how to make
+chord_types = [
+        ['major', get_major_chord],
+        ['minor', get_minor_chord],
+        ]
+
+for chord_type in chord_types:
+    chord_type_name = chord_type[0]
+    chord_type_fn = chord_type[1]
+    chord = chord_type_fn(note)
+    print('The {:s} chord for the root {:s} is {:s}.'.format(chord_type_name, note, chord))
