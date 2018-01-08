@@ -56,24 +56,22 @@ def get_major_chord(root_note):
     third = shifted_notes[4]
     fifth = shifted_notes[7]
     chord = '{:s}-{:s}-{:s}'.format(root_note, third, fifth)
-    return chord
+    return 'major', chord
 
 def get_minor_chord(root_note):
     shifted_notes = shift_list(NOTES, root_note)
     third = shifted_notes[3]
     fifth = shifted_notes[7]
     chord = '{:s}-{:s}-{:s}'.format(root_note, third, fifth)
-    return chord
+    return 'minor', chord
 
 note = ask_for_note()
-# iterate through each type of chord we know how to make
+
 chord_types = [
-        ['major', get_major_chord],
-        ['minor', get_minor_chord],
+        get_major_chord,
+        get_minor_chord,
         ]
 
 for chord_type in chord_types:
-    chord_type_name = chord_type[0]
-    chord_type_fn = chord_type[1]
-    chord = chord_type_fn(note)
+    chord_type_name, chord = chord_type(note)
     print('The {:s} chord for the root {:s} is {:s}.'.format(chord_type_name, note, chord))
