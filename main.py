@@ -65,11 +65,19 @@ def get_minor_chord(root_note):
     chord = '{:s}-{:s}-{:s}'.format(root_note, third, fifth)
     return 'minor', chord
 
+def get_augmented_chord(root_note):
+    shifted_notes = shift_list(NOTES, root_note)
+    third = shifted_notes[4]
+    fifth = shifted_notes[8]
+    chord = '{:s}-{:s}-{:s}'.format(root_note, third, fifth)
+    return 'augmented', chord
+
 note = ask_for_note()
 
 chord_types = [
         get_major_chord,
         get_minor_chord,
+        get_augmented_chord,
         ]
 
 for chord_type in chord_types:
